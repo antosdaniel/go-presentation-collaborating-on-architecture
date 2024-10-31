@@ -3,19 +3,29 @@ package main
 import (
 	"log"
 
-	"github.com/labstack/echo/v4"
-
-	booking_setup "github.com/antosdaniel/go-presentation-collaborating-on-architecture/modules/booking/setup"
+	booking_setup "github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/booking/setup"
+	no_setup "github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/no"
+	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/pkg/metrics"
+	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/pkg/setup"
 )
 
 func main() {
-	booking, err := booking_setup.New()
+	s := setup.New()
+
+	no, err := no_setup.New()
+	if err != nil {
+		log.Fatalf("Could not set up no module: %v", err)
+	}
+
+	booking, err := booking_setup.New(s.Enqueueer, no.API)
 	if err != nil {
 		log.Fatalf("Could not set up booking module: %v", err)
 	}
 
-	e := echo.New()
-	booking.RegisterRoutes(e.Group("/booking"))
+	go booking.ListenForEvents(s.Dequeueer)
+	go no.PeriodicRetry()
 
-	e.Logger.Fatal(e.Start(":8000"))
+	metrics.RegisterRoutes(s.Router)
+	booking.RegisterRoutes(s.Router.Group("/booking"))
+	s.StartServer()
 }
