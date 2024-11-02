@@ -6,7 +6,7 @@ import (
 
 func New() (NoSetup, error) {
 	return NoSetup{
-		API: api.APIWithLogs{API: api.APIImplementation{}},
+		API: api.APIImplementation{},
 	}, nil
 }
 
