@@ -1,4 +1,2 @@
-### GET request to example server
+### Request booking
 POST {{host}}/booking/book
-
-###

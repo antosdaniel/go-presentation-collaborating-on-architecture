@@ -1,15 +1,15 @@
 package internal
 
 import (
-	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/notification"
-	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/notification/internal/infra"
+	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/no"
+	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/no/internal/infra"
 )
 
 func New(
 	userRepo infra.UserRepo,
 	templateRepo infra.TemplateRepo,
 	smsSender infra.SmsSender,
-) notification.API {
+) no.API {
 	return ApiWithLogs{
 		API: api{
 			templateRepo: templateRepo,

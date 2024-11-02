@@ -4,7 +4,7 @@ import (
 	"log"
 
 	booking_setup "github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/booking/setup"
-	notification_setup "github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/notification/setup"
+	notification_setup "github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/no/setup"
 	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/pkg/metrics"
 	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/pkg/setup"
 )

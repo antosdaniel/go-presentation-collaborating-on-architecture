@@ -1,9 +1,9 @@
 package setup
 
 import (
-	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/notification"
-	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/notification/internal"
-	infra2 "github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/notification/internal/infra"
+	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/no"
+	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/no/internal"
+	infra2 "github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/no/internal/infra"
 )
 
 func New() (NoSetup, error) {
@@ -16,7 +16,7 @@ func New() (NoSetup, error) {
 }
 
 type NoSetup struct {
-	API notification.API
+	API no.API
 }
 
 func (n NoSetup) PeriodicRetry() {

@@ -4,12 +4,12 @@ import (
 	"log/slog"
 
 	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/booking"
-	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/notification"
+	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/no"
 	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/pkg/queue"
 	"github.com/labstack/echo/v4"
 )
 
-func New(enqueue queue.Enqueue, noAPI notification.API) (BookingSetup, error) {
+func New(enqueue queue.Enqueue, noAPI no.API) (BookingSetup, error) {
 	return BookingSetup{
 		manager:       booking.New(enqueue),
 		notifications: noAPI,
@@ -18,7 +18,7 @@ func New(enqueue queue.Enqueue, noAPI notification.API) (BookingSetup, error) {
 
 type BookingSetup struct {
 	manager       booking.Manager
-	notifications notification.API
+	notifications no.API
 }
 
 func (b BookingSetup) RegisterRoutes(g *echo.Group) {

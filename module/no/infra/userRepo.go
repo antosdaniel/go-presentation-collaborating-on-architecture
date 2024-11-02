@@ -9,5 +9,6 @@ func (r UserRepo) Find(id string) domain.User {
 		ID:        id,
 		FirstName: "Jon",
 		LastName:  "Doe",
+		Phone:     "+48 123 456 789",
 	}
 }

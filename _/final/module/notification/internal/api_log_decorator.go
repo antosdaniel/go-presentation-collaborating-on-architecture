@@ -3,11 +3,11 @@ package internal
 import (
 	"log/slog"
 
-	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/notification"
+	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/no"
 )
 
 type ApiWithLogs struct {
-	API notification.API
+	API no.API
 }
 
 func (a ApiWithLogs) SendNotification(templateID string, userID string) error {
