@@ -4,7 +4,7 @@ import (
 	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/no/api"
 )
 
-func New() (NoSetup, error) {
+func NewSetup() (NoSetup, error) {
 	return NoSetup{
 		API: api.APIImplementation{},
 	}, nil

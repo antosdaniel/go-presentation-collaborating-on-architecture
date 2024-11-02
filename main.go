@@ -12,7 +12,7 @@ import (
 func main() {
 	s := setup.New()
 
-	no, err := no_setup.New()
+	no, err := no_setup.NewSetup()
 	if err != nil {
 		log.Fatalf("Could not set up no module: %v", err)
 	}

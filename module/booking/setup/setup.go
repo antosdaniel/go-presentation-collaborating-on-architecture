@@ -1,6 +1,8 @@
 package booking_setup
 
 import (
+	"log/slog"
+
 	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/booking"
 	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/no/api"
 	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/pkg/queue"
@@ -28,6 +30,9 @@ func (b BookingSetup) RegisterRoutes(g *echo.Group) {
 
 func (b BookingSetup) ListenForEvents(dequeue queue.Dequeue) {
 	queue.ListenFor(dequeue, booking.BookingRequested, func() {
-		b.notifications.SendNotification("template-id", "user-id")
+		err := b.notifications.SendNotification("template-id", "user-id")
+		if err != nil {
+			slog.Error("Sending booking requested notification failed", "error", err)
+		}
 	})
 }
