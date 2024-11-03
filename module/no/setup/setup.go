@@ -1,4 +1,4 @@
-package no
+package no_setup
 
 import (
 	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/no/api"
