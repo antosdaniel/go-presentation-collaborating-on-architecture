@@ -14,7 +14,7 @@ func New(enqueue queue.Enqueue) Manager {
 	return Manager{enqueue: enqueue}
 }
 
-func (m Manager) Book() {
+func (m Manager) RequestBooking() {
 	slog.Info("Booking successfully requested")
 
 	m.enqueue.Enqueue(BookingRequested)

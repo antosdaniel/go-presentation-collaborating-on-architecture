@@ -1,2 +1,2 @@
 ### Request booking
-POST {{host}}/booking/book
+POST {{host}}/booking/request

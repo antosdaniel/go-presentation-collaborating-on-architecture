@@ -23,7 +23,7 @@ type BookingSetup struct {
 
 func (b BookingSetup) RegisterRoutes(g *echo.Group) {
 	g.POST("/book", func(c echo.Context) error {
-		b.manager.Book()
+		b.manager.RequestBooking()
 		return nil
 	})
 }
