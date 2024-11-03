@@ -1,7 +1,7 @@
 package api
 
 import (
-	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/no/infra"
+	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/no/domain"
 )
 
 type API interface {
@@ -9,18 +9,30 @@ type API interface {
 }
 
 type APIImplementation struct {
-	templateRepo infra.TemplateRepo
-	userRepo     infra.UserRepo
-	smsSender    infra.SmsSender
+	TemplateRepo TemplateRepo
+	UserRepo     UserRepo
+	SmsSender    SmsSender
 }
 
 func (a APIImplementation) SendNotification(templateID string, userID string) error {
-	template := a.templateRepo.Find(templateID)
-	user := a.userRepo.Find(userID)
+	template := a.TemplateRepo.Find(templateID)
+	user := a.UserRepo.Find(userID)
 
 	message := template.FillWithName(user.FirstName)
 
-	a.smsSender.Send(user.Phone, message)
+	a.SmsSender.Send(user.Phone, message)
 
 	return nil
+}
+
+type UserRepo interface {
+	Find(id string) domain.User
+}
+
+type TemplateRepo interface {
+	Find(id string) domain.Template
+}
+
+type SmsSender interface {
+	Send(phone string, message string)
 }

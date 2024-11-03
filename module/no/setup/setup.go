@@ -2,11 +2,16 @@ package no_setup
 
 import (
 	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/no/api"
+	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/no/infra"
 )
 
 func NewSetup() (NoSetup, error) {
 	return NoSetup{
-		API: api.APIImplementation{},
+		API: api.APIImplementation{
+			TemplateRepo: infra.TemplateRepo{},
+			UserRepo:     infra.UserRepo{},
+			SmsSender:    infra.SmsSender{},
+		},
 	}, nil
 }
 
