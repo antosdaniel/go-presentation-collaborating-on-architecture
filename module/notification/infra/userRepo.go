@@ -1,6 +1,6 @@
 package infra
 
-import "github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/no/domain"
+import "github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/notification/domain"
 
 type UserRepo struct{}
 

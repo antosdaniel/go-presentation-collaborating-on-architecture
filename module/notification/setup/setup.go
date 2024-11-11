@@ -1,8 +1,8 @@
 package no_setup
 
 import (
-	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/no/api"
-	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/no/infra"
+	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/notification/api"
+	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/notification/infra"
 )
 
 func NewSetup() (NoSetup, error) {

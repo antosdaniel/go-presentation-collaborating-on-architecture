@@ -4,7 +4,7 @@ import (
 	"log/slog"
 
 	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/booking"
-	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/no/api"
+	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/notification/api"
 	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/pkg/queue"
 	"github.com/labstack/echo/v4"
 )

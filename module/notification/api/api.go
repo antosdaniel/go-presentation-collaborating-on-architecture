@@ -1,7 +1,7 @@
 package api
 
 import (
-	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/no/domain"
+	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/notification/domain"
 )
 
 type API interface {

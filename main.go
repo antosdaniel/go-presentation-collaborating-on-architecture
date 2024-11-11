@@ -4,7 +4,7 @@ import (
 	"log"
 
 	booking_setup "github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/booking/setup"
-	no_setup "github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/no/setup"
+	notification_setup "github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/notification/setup"
 	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/pkg/metrics"
 	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/pkg/setup"
 )
@@ -12,18 +12,18 @@ import (
 func main() {
 	s := setup.New()
 
-	no, err := no_setup.NewSetup()
+	notification, err := notification_setup.NewSetup()
 	if err != nil {
 		log.Fatalf("Could not set up no module: %v", err)
 	}
 
-	booking, err := booking_setup.New(s.Enqueueer, no.API)
+	booking, err := booking_setup.New(s.Enqueueer, notification.API)
 	if err != nil {
 		log.Fatalf("Could not set up booking module: %v", err)
 	}
 
 	go booking.ListenForEvents(s.Dequeueer)
-	go no.PeriodicRetry()
+	go notification.PeriodicRetry()
 
 	metrics.RegisterRoutes(s.Router)
 	booking.RegisterRoutes(s.Router.Group("/booking"))
