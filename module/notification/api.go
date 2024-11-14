@@ -1,20 +1,26 @@
-package api
-
-import (
-	"github.com/antosdaniel/go-presentation-collaborating-on-architecture/module/notification/domain"
-)
+package notification
 
 type API interface {
 	SendNotification(templateID string, userID string) error
 }
 
-type APIImplementation struct {
+func New(templateRepo TemplateRepo, userRepo UserRepo, smsSender SmsSender) API {
+	return withLogs{
+		API: api{
+			TemplateRepo: templateRepo,
+			UserRepo:     userRepo,
+			SmsSender:    smsSender,
+		},
+	}
+}
+
+type api struct {
 	TemplateRepo TemplateRepo
 	UserRepo     UserRepo
 	SmsSender    SmsSender
 }
 
-func (a APIImplementation) SendNotification(templateID string, userID string) error {
+func (a api) SendNotification(templateID string, userID string) error {
 	template := a.TemplateRepo.Find(templateID)
 	user := a.UserRepo.Find(userID)
 
@@ -26,11 +32,11 @@ func (a APIImplementation) SendNotification(templateID string, userID string) er
 }
 
 type UserRepo interface {
-	Find(id string) domain.User
+	Find(id string) User
 }
 
 type TemplateRepo interface {
-	Find(id string) domain.Template
+	Find(id string) Template
 }
 
 type SmsSender interface {

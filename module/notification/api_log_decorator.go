@@ -1,12 +1,12 @@
-package api
+package notification
 
 import "log/slog"
 
-type APIWithLogs struct {
+type withLogs struct {
 	API API
 }
 
-func (a APIWithLogs) SendNotification(templateID string, userID string) error {
+func (a withLogs) SendNotification(templateID string, userID string) error {
 	l := slog.With(
 		slog.String("template_id", templateID),
 		slog.String("user_id", userID),
